@@ -2,7 +2,6 @@
 
 static int	ft_printhex(char *hex, int num)
 {
-	int	i;
 	int	count;
 
 	count = 0;
