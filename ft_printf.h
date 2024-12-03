@@ -17,10 +17,9 @@ int	print_di(va_list ap);
 int	print_u(va_list ap);
 int	print_x(va_list ap);
 int	print_X(va_list ap);
+int	print_p(va_list ap);
 int	print_mod(va_list ap);
 
 int	ft_strlen(char *str);
-int	ft_putnbr(int n);
-int	ft_putnbr_unsigned(unsigned int n);
-int	ft_printhex(char *hex, int num);
+int	ft_putstr(char *str);
 #endif

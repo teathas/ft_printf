@@ -16,10 +16,12 @@ void	fill_frmts(t_fs *frmts)
 	frmts[5].f = print_x;
 	frmts[6].c = 'X';
 	frmts[6].f = print_X;
-	frmts[7].c = '%';
-	frmts[7].f = print_mod;
-	frmts[8].c = '\0';
-	frmts[8].f = NULL;
+	frmts[7].c = 'p';
+	frmts[7].f = print_p;
+	frmts[8].c = '%';
+	frmts[8].f = print_mod;
+	frmts[9].c = '\0';
+	frmts[9].f = NULL;
 }
 
 int	get_func(char c, va_list ap, t_fs *frmts)
@@ -58,7 +60,7 @@ int	ft_printf(const char *s, ...)
 {
 	int	len;
 	va_list	ap;
-	t_fs	frmts[9];
+	t_fs	frmts[10];
 
 	va_start(ap, s);
 	fill_frmts(frmts);

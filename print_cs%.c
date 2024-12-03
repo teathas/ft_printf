@@ -14,8 +14,8 @@ int	print_s(va_list ap)
 
 	str = va_arg(ap, char *);
 	if (str == NULL)
-		return (write(1, "(null)", 6));
-	return (write(1, str, ft_strlen(str)));
+		return (ft_putstr("(nil)"));
+	return (ft_putstr(str));
 }
 
 int	print_mod(va_list ap)
