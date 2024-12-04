@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-static int	ft_printhex(char *hex, int num)
+static int	ft_printhex(char *hex, unsigned int num)
 {
 	int	count;
 
@@ -17,7 +17,7 @@ int	print_x(va_list ap)
 	int	num;
 
 	hex = "0123456789abcdef";
-	num = va_arg(ap, int);
+	num = va_arg(ap, unsigned int);
 	return (ft_printhex(hex, num));		
 }
 
@@ -27,6 +27,6 @@ int	print_X(va_list ap)
 	int	num;
 
 	hex = "0123456789ABCDEF";
-	num = va_arg(ap, int);
+	num = va_arg(ap, unsigned int);
 	return (ft_printhex(hex, num));
 }

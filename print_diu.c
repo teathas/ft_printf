@@ -2,10 +2,9 @@
 
 static int	ft_putnbr(int n)
 {
-	int	count;
+	static int	count;
 	char		c;
 
-	count = 0;
 	if (n == -2147483648)
 		return (write(1, "-2147483648", 11));
 	if (n < 0)
