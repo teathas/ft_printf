@@ -22,5 +22,7 @@ int	print_p(va_list ap)
 	unsigned long long p;
 
 	p = (unsigned long long)va_arg(ap, void *);
+	if (!p)
+		return (ft_putstr("(nil)"));
 	return (ft_putstr("0x") + print_address(p));
 }
