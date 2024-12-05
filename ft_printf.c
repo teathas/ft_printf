@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aberkass <aberkass@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/05 13:06:23 by aberkass          #+#    #+#             */
+/*   Updated: 2024/12/05 13:07:26 by aberkass         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 void	fill_frmts(t_fs *frmts)
@@ -13,9 +25,9 @@ void	fill_frmts(t_fs *frmts)
 	frmts[4].c = 'u';
 	frmts[4].f = print_u;
 	frmts[5].c = 'x';
-	frmts[5].f = print_x;
+	frmts[5].f = print_lowerhex;
 	frmts[6].c = 'X';
-	frmts[6].f = print_X;
+	frmts[6].f = print_upperhex;
 	frmts[7].c = 'p';
 	frmts[7].f = print_p;
 	frmts[8].c = '%';
@@ -58,9 +70,9 @@ int	format_check(const char *s, va_list ap, t_fs *frmts)
 
 int	ft_printf(const char *s, ...)
 {
-	int	len;
-	va_list	ap;
-	t_fs	frmts[10];
+	t_fs		frmts[10];
+	va_list		ap;
+	int			len;
 
 	va_start(ap, s);
 	fill_frmts(frmts);

@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_diu.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aberkass <aberkass@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/05 13:05:20 by aberkass          #+#    #+#             */
+/*   Updated: 2024/12/05 13:10:32 by aberkass         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 static int	ft_putnbr(int n)
 {
-	int	count;
-	char		c;
+	int		count;
+	char	c;
 
 	count = 0;
 	if (n == -2147483648)
@@ -22,8 +34,8 @@ static int	ft_putnbr(int n)
 
 static int	ft_putnbr_unsigned(unsigned int n)
 {
-	int	count;
-	char		c;
+	int		count;
+	char	c;
 
 	count = 0;
 	if (n > 9)
@@ -38,7 +50,7 @@ int	print_di(va_list ap)
 	int	num;
 
 	num = va_arg(ap, int);
-	return (ft_putnbr(num));	
+	return (ft_putnbr(num));
 }
 
 int	print_u(va_list ap)
@@ -46,5 +58,5 @@ int	print_u(va_list ap)
 	unsigned int	num;
 
 	num = va_arg(ap, unsigned int);
-	return (ft_putnbr_unsigned(num));	
+	return (ft_putnbr_unsigned(num));
 }
