@@ -6,7 +6,7 @@
 /*   By: aberkass <aberkass@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:06:23 by aberkass          #+#    #+#             */
-/*   Updated: 2024/12/05 13:07:26 by aberkass         ###   ########.fr       */
+/*   Updated: 2024/12/06 10:21:41 by aberkass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ int	ft_printf(const char *s, ...)
 	va_list		ap;
 	int			len;
 
+	if (!s)
+		return (-1);
 	va_start(ap, s);
 	fill_frmts(frmts);
 	len = format_check(s, ap, frmts);
