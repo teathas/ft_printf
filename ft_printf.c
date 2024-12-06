@@ -6,7 +6,7 @@
 /*   By: aberkass <aberkass@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:06:23 by aberkass          #+#    #+#             */
-/*   Updated: 2024/12/06 10:21:41 by aberkass         ###   ########.fr       */
+/*   Updated: 2024/12/06 10:42:38 by aberkass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,11 @@ int	format_check(const char *s, va_list ap, t_fs *frmts)
 	count = 0;
 	while (s[i])
 	{
-		if (s[i] == '%' && s[++i] != '\0')
-			count += get_func(s[i], ap, frmts);
+		if (s[i] == '%' && s[i + 1] != '\0')
+		{
+			count += get_func(s[i + 1], ap, frmts);
+			i += 1;
+		}
 		else
 			count += write(1, &s[i], 1);
 		i++;
