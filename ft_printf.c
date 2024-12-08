@@ -54,9 +54,11 @@ int	format_check(const char *s, va_list ap, t_fs *frmts)
 {
 	int	i;
 	int	count;
+	int	len;
 
 	i = 0;
 	count = 0;
+	len = 0;
 	while (s[i])
 	{
 		if (s[i] == '%')
@@ -66,17 +68,20 @@ int	format_check(const char *s, va_list ap, t_fs *frmts)
 				return (-1);
 			else
 			{
-				count += get_func(s[i + 1], ap, frmts);
+				count = get_func(s[i + 1], ap, frmts);
 				i += 2;
 			}
 		}
 		else
 		{
-			count += write(1, &s[i], 1);
+			count = write(1, &s[i], 1);
 			i++;
 		}
+		if (count == -1)
+			return (-1);
+		len += count;
 	}
-	return (count);
+	return (len);
 }
 
 int	ft_printf(const char *s, ...)
