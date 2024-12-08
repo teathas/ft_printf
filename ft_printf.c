@@ -6,7 +6,7 @@
 /*   By: aberkass <aberkass@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:06:23 by aberkass          #+#    #+#             */
-/*   Updated: 2024/12/06 10:42:38 by aberkass         ###   ########.fr       */
+/*   Updated: 2024/12/08 20:52:19 by aberkass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,25 +61,14 @@ int	format_check(const char *s, va_list ap, t_fs *frmts)
 	len = 0;
 	while (s[i])
 	{
-		if (s[i] == '%')
-		{
-			
-			if (s[i + 1] == '\0')
-				return (-1);
-			else
-			{
-				count = get_func(s[i + 1], ap, frmts);
-				i += 2;
-			}
-		}
+		if (s[i] == '%' && s[++i] != '\0')
+			count = get_func(s[i], ap, frmts);
 		else
-		{
 			count = write(1, &s[i], 1);
-			i++;
-		}
 		if (count == -1)
 			return (-1);
 		len += count;
+		i++;
 	}
 	return (len);
 }
@@ -95,5 +84,6 @@ int	ft_printf(const char *s, ...)
 	va_start(ap, s);
 	fill_frmts(frmts);
 	len = format_check(s, ap, frmts);
+	va_end(ap);
 	return (len);
 }
