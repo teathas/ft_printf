@@ -59,14 +59,22 @@ int	format_check(const char *s, va_list ap, t_fs *frmts)
 	count = 0;
 	while (s[i])
 	{
-		if (s[i] == '%' && s[i + 1] != '\0')
+		if (s[i] == '%')
 		{
-			count += get_func(s[i + 1], ap, frmts);
-			i += 1;
+			
+			if (s[i + 1] == '\0')
+				return (-1);
+			else
+			{
+				count += get_func(s[i + 1], ap, frmts);
+				i += 2;
+			}
 		}
 		else
+		{
 			count += write(1, &s[i], 1);
-		i++;
+			i++;
+		}
 	}
 	return (count);
 }
