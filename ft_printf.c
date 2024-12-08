@@ -6,7 +6,7 @@
 /*   By: aberkass <aberkass@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:06:23 by aberkass          #+#    #+#             */
-/*   Updated: 2024/12/08 14:47:43 by aberkass         ###   ########.fr       */
+/*   Updated: 2024/12/06 10:42:38 by aberkass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,29 +50,33 @@ int	get_func(char c, va_list ap, t_fs *frmts)
 	return (write(1, &c, 1));
 }
 
-void	format_check(const char *s, va_list ap, t_fs *frmts, int *len)
+int	format_check(const char *s, va_list ap, t_fs *frmts)
 {
 	int	i;
 	int	count;
 
 	i = 0;
 	count = 0;
-	while (s[i] != '\0')
+	while (s[i])
 	{
-		if (s[i] == '%' && s[++i] != '\0')
-			count = get_func(s[i], ap, frmts);
+		if (s[i] == '%')
+		{
+			
+			if (s[i + 1] == '\0')
+				return (-1);
+			else
+			{
+				count += get_func(s[i + 1], ap, frmts);
+				i += 2;
+			}
+		}
 		else
 		{
-			count = write(1, &s[i], 1);
+			count += write(1, &s[i], 1);
 			i++;
 		}
-		if (count == -1)
-		{
-			*len = -1;
-			return ;
-		}
-		*len += count;
 	}
+	return (count);
 }
 
 int	ft_printf(const char *s, ...)
@@ -81,12 +85,10 @@ int	ft_printf(const char *s, ...)
 	va_list		ap;
 	int			len;
 
-	len = 0;
 	if (!s)
 		return (-1);
 	va_start(ap, s);
 	fill_frmts(frmts);
-	format_check(s, ap, frmts, &len);
-	va_end(ap);
+	len = format_check(s, ap, frmts);
 	return (len);
 }
